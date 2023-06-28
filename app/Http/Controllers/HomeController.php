@@ -33,9 +33,10 @@ class HomeController extends Controller
     {
         //Today datas
         $sitename = Auth::user()->siteName;
+        $timezone = 'Asia/Yangon';
 
         try {
-            $date = Carbon::now()->toDateString();
+            $date = Carbon::now($timezone)->toDateString();
             $response = Http::post('http://139.180.188.161/report?startDate=' . $date . '&endDate=' . $date . '', [
                 'siteName' => "$sitename",
             ]);
