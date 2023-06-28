@@ -28,8 +28,8 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 });
 
 Auth::routes();
-// Route::get('/register', function(){
-//     return back();
-// });
+Route::get('/register', function(){
+    return back();
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
