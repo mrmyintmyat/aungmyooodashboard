@@ -115,7 +115,7 @@ class HomeController extends Controller
             ]);
             $responseData = json_decode($response->getBody(), true);
             $totaldata = json_decode($total->getBody(), true);
-            if ($response['status'] == false || $totaldata['status'] == false) {
+            if ($responseData['status'] == false || $totaldata['status'] == false) {
                 return view('error');
             }
             if (isset($responseData['error']) || isset($totaldata['error'])) {
@@ -134,7 +134,71 @@ class HomeController extends Controller
 
     public function report()
     {
-        return view('report');
+                //Today datas
+        $sitename = Auth::user()->siteName;
+        $timezone = 'Asia/Yangon';
+
+        try {
+            $date = Carbon::now($timezone)->toDateString();
+            $response = Http::post('http://139.180.188.161/report?startDate=' . $date . '&endDate=' . $date . '', [
+                'siteName' => "$sitename",
+            ]);
+            $totaldata = Http::post('http://139.180.188.161/report?startDate=' . $date . '&endDate=' . $date . '&total=true', [
+                'siteName' => "$sitename",
+            ]);
+            $data = json_decode($response->getBody(), true);
+            $totaldata = json_decode($totaldata->getBody(), true);
+            if ($data['status'] == false || $totaldata['status'] == false) {
+                return view('error');
+            }
+            if (isset($data['error']) || isset($totaldata['error'])) {
+                $error = $data['error'];
+                return view('error', compact('error'));
+            }
+
+        } catch (\Throwable $th) {
+            return view('error');
+        }
+
+        return view('report', ['data' => $data, 'date' => $date, 'totaldatas' => $totaldata]);
+    }
+
+    public function post_date_reports(Request $request)
+    {
+        $dateRange = $request->input('date');
+        [$startDateString, $endDateString] = explode(' - ', $dateRange);
+        $sitename = Auth::user()->siteName;
+
+        $startDate = Carbon::createFromFormat('m/d/Y', $startDateString);
+        $endDate = Carbon::createFromFormat('m/d/Y', $endDateString);
+
+        try {
+            $response = Http::post('http://139.180.188.161/report?startDate=' . $startDate->format('Y-m-d') . '&endDate=' . $endDate->format('Y-m-d') . '', [
+                'siteName' => "$sitename",
+            ]);
+
+            $total = Http::post('http://139.180.188.161/report?startDate=' . $startDate->format('Y-m-d') . '&endDate=' . $endDate->format('Y-m-d') . '&total=true', [
+                'siteName' => "$sitename",
+            ]);
+            $data = json_decode($response->getBody(), true);
+            $totaldata = json_decode($total->getBody(), true);
+
+            if ($data['status'] == false || $totaldata['status'] == false) {
+                return view('error');
+            }
+            if (isset($data['error']) || isset($totaldata['error'])) {
+                $error = $data['error'];
+                return view('error', compact('error'));
+            }
+
+            if ($data == null) {
+                return view('error');
+            }
+
+            return view('report', ['data' => $data, 'date' => $dateRange, 'totaldatas' => $totaldata]);
+        } catch (\Throwable $th) {
+            return view('error');
+        }
     }
 
     public function pw_change_show_form()

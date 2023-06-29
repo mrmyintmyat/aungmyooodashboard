@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminPanelController;
 Route::get('/', [HomeController::class, 'index']);
 Route::post('/', [HomeController::class, 'post_date'])->name('post.date');
 Route::get('/reports', [HomeController::class, 'report']);
+Route::post('/reports', [HomeController::class, 'post_date_reports'])->name('post_reports.date');
 Route::get('/password-change', [HomeController::class, 'pw_change_show_form']);
 Route::post('/password-change', [HomeController::class, 'pw_change'])->name('password.change');
 
