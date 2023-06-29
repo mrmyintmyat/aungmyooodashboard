@@ -50,8 +50,11 @@ class HomeController extends Controller
             return view('error');
         }
 
-        $lastSevenDaysdata = $this->lastsevendays();
-        return view('index', ['data' => $data, 'date' => $date, 'lastsevendaysdatas' => $lastSevenDaysdata]);
+
+        $lastSevenDaysdatas = $this->lastsevendays();
+        $lastSevenDaysdata = $lastSevenDaysdatas['data'];
+        $lastSevenDaysdatatotal = $lastSevenDaysdatas['total'];
+        return view('index', ['data' => $data, 'date' => $date, 'lastsevendaysdatas' => $lastSevenDaysdata, 'lastSevenDaysdatatotal' => $lastSevenDaysdatatotal]);
     }
 
     public function post_date(Request $request)
@@ -78,8 +81,11 @@ class HomeController extends Controller
                 return view('error');
             }
 
-            $lastSevenDaysdata = $this->lastsevendays();
-            return view('index', ['data' => $data, 'date' => $dateRange, 'lastsevendaysdatas' => $lastSevenDaysdata]);
+            $lastSevenDaysdatas = $this->lastsevendays();
+            $lastSevenDaysdata = $lastSevenDaysdatas['data'];
+            $lastSevenDaysdatatotal = $lastSevenDaysdatas['total'];
+
+            return view('index', ['data' => $data, 'date' => $dateRange, 'lastsevendaysdatas' => $lastSevenDaysdata, 'lastSevenDaysdatatotal' => $lastSevenDaysdatatotal]);
         } catch (\Throwable $th) {
             return view('error');
         }
@@ -87,22 +93,32 @@ class HomeController extends Controller
 
     public function lastsevendays()
     {
+        $timezone = 'Asia/Yangon';
         try {
-            $todaydate = Carbon::now()->toDateString();
-            $date = Carbon::now()->subDays(6)->toDateString();
+            $todaydate = Carbon::now($timezone)->toDateString();
+            $date = Carbon::now($timezone)
+                ->subDays(6)
+                ->toDateString();
 
             $response = Http::post('http://139.180.188.161/report?startDate=' . $date . '&endDate=' . $todaydate . '', [
                 'siteName' => Auth::user()->siteName,
             ]);
-            $responseData = json_decode($response->getBody(), true);
 
-            if (isset($responseData['error'])) {
+            $total = Http::post('http://139.180.188.161/report?startDate=' . $date . '&endDate=' . $todaydate . '&total=true', [
+                'siteName' => Auth::user()->siteName,
+            ]);
+            $responseData = json_decode($response->getBody(), true);
+            $totaldata = json_decode($total->getBody(), true);
+
+            if (isset($responseData['error']) || isset($totaldata['error'])) {
                 $error = $responseData['error'];
                 return view('error', compact('error'));
             }
 
-            return $responseData;
-
+            return [
+                'data' => $responseData,
+                'total' => $totaldata,
+            ];
         } catch (\Throwable $th) {
             return view('error');
         }

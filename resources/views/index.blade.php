@@ -128,10 +128,10 @@ function formatNumber($number)
             </div>
         </div>
     </div>
-    <div class="earnings shadow-sm border">
+    <div class="earnings shadow-sm mb-3 border">
         <div class="text-start p-2 px-3 border-bottom border-2 border-opacity-50 fw-semibold">EARNINGS</div>
-        <div class="table-responsive  p-2">
-            <table class="table table-borderless text-start">
+        <div class="table-responsive pb-0">
+            <table class="table table-borderless text-start mb-0">
                 <thead>
                     <tr>
                         <th scope="col">DATE</th>
@@ -144,7 +144,7 @@ function formatNumber($number)
                 </thead>
                 <tbody>
                     @for ($i = 0; $i < count($lastsevendaysdatas['data']); $i++)
-                        <tr>
+                        <tr class="mx-2">
                             <th>{{ $lastsevendaysdatas['data'][$i]['date'] }}</th>
                             <td>{{ $lastsevendaysdatas['data'][$i]['totalRequests'] }}</td>
                             <td>{{ $lastsevendaysdatas['data'][$i]['impressions'] }}</td>
@@ -153,6 +153,14 @@ function formatNumber($number)
                             <td>{{ $lastsevendaysdatas['data'][$i]['ecpm'] }}</td>
                         </tr>
                     @endfor
+                    <tr class="shadow-sm border border-top border-2 fw-semibold">
+                        <th>Total</th>
+                        <td>{{ $lastSevenDaysdatatotal['data'][0]['totalRequests'] }}</td>
+                        <td>{{ $lastSevenDaysdatatotal['data'][0]['impressions'] }}</td>
+                        <td>{{ $lastSevenDaysdatatotal['data'][0]['clicks'] }}</td>
+                        <td>{{ $lastSevenDaysdatatotal['data'][0]['revenue'] }}</td>
+                        <td>{{ $lastSevenDaysdatatotal['data'][0]['ecpm'] }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
