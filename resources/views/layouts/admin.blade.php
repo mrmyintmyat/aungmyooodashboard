@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    @if (session('success'))
+    @if (session('success_user'))
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-3">
 
@@ -62,7 +62,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        {{ session('success') }}
+                        {{ session('success_user') }}
                     </div>
                 </div>
             </div>

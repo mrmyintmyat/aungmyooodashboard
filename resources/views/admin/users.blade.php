@@ -66,7 +66,7 @@
             if (confirm("Are you sure?")) {
                 axios.delete('/admin/' + id)
                     .then(function(response) {
-                        // $('#' + id).remove();
+                        $('#' + id).remove();
                         var toast = document.getElementById('toast');
                         toast.classList.add('show');
                     })

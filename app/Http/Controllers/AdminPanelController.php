@@ -38,7 +38,7 @@ class AdminPanelController extends Controller
           'password' => Hash::make($request->input('password')),
       ]);
 
-      return back()->with('success', 'User created successfully');
+      return back()->with('success_user', 'User created successfully');
   }
 
   public function ShowUsersPage(){
@@ -80,7 +80,7 @@ class AdminPanelController extends Controller
     $user->role = $request->role;
     $user->save();
 
-    return redirect()->back()->with('success', 'User updated successfully');
+    return redirect()->back()->with('success_user', 'User updated successfully');
   }
 
   public function destroy($id)
