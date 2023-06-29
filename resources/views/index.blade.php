@@ -153,7 +153,7 @@ function formatNumber($number)
                             <td>{{ $lastsevendaysdatas['data'][$i]['ecpm'] }}</td>
                         </tr>
                     @endfor
-                    <tr class="shadow-sm border border-top border-2 fw-semibold">
+                    <tr class="shadow-sm border border-top border-bottom-0 border-start-0 border-end-0 border-2 fw-semibold">
                         <th>Total</th>
                         <td>{{ $lastSevenDaysdatatotal['data'][0]['totalRequests'] }}</td>
                         <td>{{ $lastSevenDaysdatatotal['data'][0]['impressions'] }}</td>
