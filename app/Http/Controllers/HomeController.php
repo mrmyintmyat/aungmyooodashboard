@@ -41,11 +41,15 @@ class HomeController extends Controller
                 'siteName' => "$sitename",
             ]);
             $data = json_decode($response->getBody(), true);
+            if ($data['status'] == false) {
+                return view('error');
+            }
 
             if (isset($data['error'])) {
                 $error = $data['error'];
                 return view('error')->with('error', $error);
             }
+
         } catch (\Throwable $th) {
             return view('error');
         }
@@ -71,7 +75,9 @@ class HomeController extends Controller
                 'siteName' => "$sitename",
             ]);
             $data = json_decode($response->getBody(), true);
-
+            if ($data['status'] == false) {
+                return view('error');
+            }
             if (isset($data['error'])) {
                 $error = $data['error'];
                 return view('error')->with('error', $error);
@@ -109,7 +115,9 @@ class HomeController extends Controller
             ]);
             $responseData = json_decode($response->getBody(), true);
             $totaldata = json_decode($total->getBody(), true);
-
+            if ($response['status'] == false || $totaldata['status'] == false) {
+                return view('error');
+            }
             if (isset($responseData['error']) || isset($totaldata['error'])) {
                 $error = $responseData['error'];
                 return view('error', compact('error'));
