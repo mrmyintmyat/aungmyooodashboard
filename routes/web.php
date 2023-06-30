@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminPanelController;
 /*
@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminPanelController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::post('/', [HomeController::class, 'post_date'])->name('post.date');
+Route::post('/', 'App\Http\Controllers\Home\HomeController@post_date')->name('post.date');
 Route::get('/reports', [HomeController::class, 'report']);
 Route::post('/reports', [HomeController::class, 'post_date_reports'])->name('post_reports.date');
 Route::get('/password-change', [HomeController::class, 'pw_change_show_form']);
@@ -28,9 +28,9 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('/admin', AdminPanelController::class);
 });
 
-Auth::routes();
-Route::get('/register', function(){
-    return back();
-});
+Auth::routes(['register' => false]);
+// Route::get('/register', function(){
+//     return back();
+// });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');

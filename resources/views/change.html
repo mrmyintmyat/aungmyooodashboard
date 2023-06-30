@@ -13,22 +13,165 @@
 
 <body>
 
-    <form class="container">
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">CURRENT PASSWORD</label>
-            <input type="password" class="form-control rounded-0" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">NEW PASSWORD</label>
-            <input type="password" class="form-control rounded-0" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">PASSWORD CONFIRMATION</label>
-            <input type="password" class="form-control rounded-0" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary rounded-0">save</button>
-    </form>
+    <div class="earnings shadow-sm border mt-3 position-relative">
+        <div class="text-start p-2 px-3 border-bottom border-2 border-opacity-50 fw-semibold">REPORTS</div>
+        <div class="table-responsive pb-0 mb-4">
+            <table class="table table-borderless text-start mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">DATE</th>
+                        <th scope="col">REQUESTS</th>
+                        <th scope="col">IMPRESSIONS</th>
+                        <th scope="col">CLICKS</th>
+                        <th scope="col">REVENUE</th>
+                        <th scope="col">ECPM</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody" class="mb-4" style="height: 100px; overflow: scroll;">
+                        <tr class="mx-2">
+                        <th>2023-06-20</th>
+                        <td>57998</td>
+                        <td>44947</td>
+                        <td>82</td>
+                        <td>18.249428</td>
+                        <td>0.337609</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-21</th>
+                        <td>67713</td>
+                        <td>50526</td>
+                        <td>139</td>
+                        <td>22.807449</td>
+                        <td>0.35645</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-22</th>
+                        <td>155302</td>
+                        <td>97301</td>
+                        <td>414</td>
+                        <td>67.838318</td>
+                        <td>0.522754</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-23</th>
+                        <td>599658</td>
+                        <td>347124</td>
+                        <td>386</td>
+                        <td>267.286254</td>
+                        <td>0.57482</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-24</th>
+                        <td>282280</td>
+                        <td>151751</td>
+                        <td>233</td>
+                        <td>97.731329</td>
+                        <td>0.497517</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-25</th>
+                        <td>90172</td>
+                        <td>223</td>
+                        <td>143</td>
+                        <td>0.865477</td>
+                        <td>2.538055</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-26</th>
+                        <td>83920</td>
+                        <td>174</td>
+                        <td>133</td>
+                        <td>0.116524</td>
+                        <td>0.485518</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-27</th>
+                        <td>81990</td>
+                        <td>190</td>
+                        <td>98</td>
+                        <td>0.229486</td>
+                        <td>0.846811</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-28</th>
+                        <td>89443</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-29</th>
+                        <td>1670</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        </tr>
+                        
+                        <tr class="mx-2">
+                        <th>2023-06-30</th>
+                        <td>315</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>5.6e-05</td>
+                        <td>0.018667</td>
+                        </tr>
 
+                        
+                    </tbody>
+                    <tbody class="">
+                        <tr class="">
+                            <th class="col-3">2023-06-30</th>
+                            <td class="col-3">315</td>
+                            <td class="col-3">1</td>
+                            <td class="col-3">0</td>
+                            <td class="col-3">5.6e-05</td>
+                            <td class="col-3">0.018667</td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <!-- <tr id="total"
+            class="shadow-sm border border-top border-bottom-0 border-start-0 border-end-0 border-2 fw-semibold">
+            <th>2023-06-30</th>
+                        <td>315</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>5.6e-05</td>
+                        <td>0.018667</td>
+        </tr> -->
+        <div class="table-responsive pb-0">
+
+        <!-- <table class="table table-borderless text-start mb-0 position-absolute bottom-0">
+            <thead>
+                <tr>
+                    <th scope="col">DATE</th>
+                    <th scope="col">315</th>
+                    <th scope="col">1</th>
+                    <th scope="col">0</th>
+                    <th scope="col">REVENUE</th>
+                    <th scope="col">ECPM</th>
+                </tr>
+            </thead>
+           
+        </table> -->
+        </div>
+        
+    </div>
+    <div class="error mb-4 bg-danger text-center text-warning">
+        error containersvo
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>

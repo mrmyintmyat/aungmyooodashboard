@@ -112,7 +112,7 @@
                 '<div class="drp-buttons">' +
                     '<span class="drp-selected"></span>' +
                     '<button class="cancelBtn" type="button"></button>' +
-                    '<button onclick="setTimeout(function() { $(\'.post_date_form\').submit(); }, 1000);" class="applyBtn" disabled="disabled" type="button"></button> ' +
+                    '<button onclick="" class="applyBtn" disabled="disabled" type="button"></button> ' +
                 '</div>' +
             '</div>';
 
@@ -351,7 +351,7 @@
 
             var list = '<ul>';
             for (range in this.ranges) {
-                list += '<li onclick="setTimeout(function() { $(\'.post_date_form\').submit(); }, 500);" data-range-key="' + range + '">' + range + '</li>';
+                list += '<li data-range-key="' + range + '">' + range + '</li>';
             }
             if (this.showCustomRangeLabel) {
                 list += '<li data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</li>';
@@ -361,7 +361,7 @@
             this.container.find('.ranges').prepend(list);
 
 
-        }
+        }       
 
         if (typeof cb === 'function') {
             this.callback = cb;
